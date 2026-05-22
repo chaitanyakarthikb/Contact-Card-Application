@@ -1,0 +1,37 @@
+header {
+    background-color: lightcyan;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+/* =========================LEFT============ */
+.left h1 {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+
+}
+
+
+
+
+/* =========================RIGHT=========== */
+
+.right span {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    letter-spacing: 0.75px;
+    font-size: 1.25rem;
+}
+
+
+.right span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.right a{
+    text-decoration: none;
+    color: inherit;
+}

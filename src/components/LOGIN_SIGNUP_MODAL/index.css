@@ -1,0 +1,32 @@
+.modal{
+    background-color: lightcyan;
+    position: absolute;
+    height: 75%;
+    width: 50vw;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.heading{
+    /* background-color: azure; */
+    height:25%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.forms{
+    display: flex;
+    flex-direction: column;
+    /* background-color: antiquewhite; */
+}
+
+.forms input,button{
+    width:50%;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+}
+
