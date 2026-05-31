@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import axios from "axios";
+import { Constants } from "../../CONSTANTS";
 
 const Index = () => {
   const loginFields: string[] = ["Username", "Password"];
@@ -16,6 +17,8 @@ const Index = () => {
     password: "",
     confirmpassword: "",
   });
+
+  const [status,setStatus] = useState<String>("");
 
   const refactor = (field: string) => {
     let temp = field.toLowerCase();
@@ -46,50 +49,64 @@ const Index = () => {
             alert("Please fill all the fields");
             return;
         }
+        setStatus("Loading...")
       try {
         let apiResponse = await axios.post(
-          "http://localhost:8080/api/user/login",
+          Constants.LOGIN_URL,
           {
             userName: loginState.username,
             password: loginState.password,
           },
         );
-        alert(apiResponse.data);
+        if(apiResponse?.status === 200){
+          setStatus("Login Success")
+          let jwtToken = apiResponse?.data;
+          localStorage.setItem("jwtToken", jwtToken);
+          setTimeout(()=>{
+            window.location.href = "/";
+          },1000);
+        }
       } catch (err) {
         console.error("API Error", err);
+        setStatus("Something went wrong")
+
       }
       setLoginState({
         username: "",
         password: "",
       });
     } else {
+        setStatus("Loading...")
         if(signupState.username === "" || signupState.password === "") {
-            alert("Please fill all the fields");
+            setStatus("Please fill all the fields");
             return;
         }
       if (signupState.password !== signupState.confirmpassword) {
-        alert("Passwords do not match");
+            setStatus("Please fill all the fields");
         return;
       } else {
         try {
           let apiResponse = await axios.post(
-            "http://localhost:8080/api/user/signup",
+            Constants.SIGNUP_URL,
             {
               userName: signupState.username,
               password: signupState.password,
             },
           );
           if (apiResponse.status !== 200) {
-            alert("Signup failed");
+            setStatus("Signup Failed");
             return;
           }
 
           if (apiResponse.status === 200) {
-            alert("Signup successful");
-            window.location.href = "/";
+            setStatus("Signup Success");
+            setTimeout(()=>{
+              window.location.href = "/";
+            },1000)
           }
         } catch (err) {
           console.error("API Error", err);
+          setStatus("Something went wrong");
         }
       }
       setSignupState({
@@ -101,6 +118,13 @@ const Index = () => {
   };
 
   const isLogin: boolean = window.location.href.includes("login");
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setStatus("");
+    },2000);
+
+  },[status])
 
   return (
     <div className="modal">
@@ -136,6 +160,10 @@ const Index = () => {
               />
             );
           })}
+          {
+            status.length > 0 && <div className="status--message">{status}</div>
+          }
+          
 
         <button onClick={handleSubmit}>{isLogin ? "Login" : "Signup"}</button>
       </div>
