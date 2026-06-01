@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 const Header = () => {
   return (
-    <header>
+    <header className="app-header">
       <div className='left'>
         <h1>CK Contact Application</h1>
       </div>

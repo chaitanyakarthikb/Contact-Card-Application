@@ -62,9 +62,7 @@ const Index = () => {
           setStatus("Login Success")
           let jwtToken = apiResponse?.data;
           localStorage.setItem("jwtToken", jwtToken);
-          setTimeout(()=>{
-            window.location.href = "/";
-          },1000);
+            window.location.href = "/contacts";
         }
       } catch (err) {
         console.error("API Error", err);
@@ -100,9 +98,7 @@ const Index = () => {
 
           if (apiResponse.status === 200) {
             setStatus("Signup Success");
-            setTimeout(()=>{
               window.location.href = "/";
-            },1000)
           }
         } catch (err) {
           console.error("API Error", err);

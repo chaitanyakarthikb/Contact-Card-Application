@@ -5,13 +5,32 @@
   font-family: sans-serif;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 .app--container{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .main--container{
   flex-grow: 1;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
