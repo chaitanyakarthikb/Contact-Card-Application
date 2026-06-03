@@ -4,6 +4,7 @@ import { Constants } from "../../CONSTANTS";
 
 import "./Contacts.css";
 import Contact from "./Contact";
+import { Link } from "react-router-dom";
 
 type ContactRecord = {
   contactID?: number;
@@ -44,7 +45,9 @@ const ContactDashBoard = () => {
           <span className="contacts--add-btn-icon" aria-hidden="true">
             +
           </span>
-          Add Contact
+          <Link to="/add-contact">
+            Add Contact
+          </Link>
         </button>
       </div>
 

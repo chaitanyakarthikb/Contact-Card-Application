@@ -1,12 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header.tsx'
 import Index from './components/LOGIN_SIGNUP_MODAL/index.tsx'
 import ProtectedRoutes from './Routes/ProtectedRoutes.tsx'
 import ContactDashBoard from './components/Contacts/ContactDashBoard.tsx'
+import AddContact from './components/Contacts/AddContact.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +23,11 @@ createRoot(document.getElementById('root')!).render(
                 <ContactDashBoard/>
               </ProtectedRoutes>
             } />
+            <Route path="/add-contact" element={
+              <ProtectedRoutes>
+                <AddContact/>
+              </ProtectedRoutes>
+            }/>
           </Routes>
         </div>
       </div>
